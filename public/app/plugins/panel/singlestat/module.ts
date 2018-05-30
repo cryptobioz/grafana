@@ -613,6 +613,11 @@ class SingleStatCtrl extends MetricsPanelCtrl {
 
       // get thresholds
       data.thresholds = panel.thresholds.split(',').map(function(strVale) {
+        for (var i = 0; i < ctrl.series.length; i++) {
+          if (ctrl.series[i].id === strVale.trim() + '-series') {
+            return Number(ctrl.series[i].stats.current);
+          }
+        }
         return Number(strVale.trim());
       });
       data.colorMap = panel.colors;
